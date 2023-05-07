@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  rust-ipopt:
+    image: rust-ipopt:v03
+    container_name: rust-ipopt
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        RUST_VERSION: stable
+        LIBDIR_TMP: /var/tmp/lib
+
+    working_dir: /workdir
+
+    environment:
+      MKLROOT: /opt/intel/oneapi/mkl/latest
+
+    volumes: 
+      - ./workdir:/workdir
+
+    tty: true
+
+    # command: /bin/bash
